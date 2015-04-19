@@ -1,0 +1,179 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta property="og:title" content="I Hack Music.." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://ihackmusic.appspot.com/" />
+		<meta property="og:image" content="https://ihackmusic.appspot.com/css/title.jpg" />
+		<meta property="og:site_name" content="IHM" />
+		<meta property="og:description" content="I want to listen to more music.." />
+		<meta property="fb:admins" content="100000226553562" />
+		<link type="text/css" rel="stylesheet" href="/css/index.css" />
+		<link type="text/css" href="/css/blue.monday/jplayer.blue.monday.css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.xdomainajax.js"></script>
+		<script type="text/javascript" src="/js/jplayer/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" src="/js/jui/jquery.ui.core.js"></script>
+		<script type="text/javascript" src="/js/jui/jquery.ui.widget.js"></script>
+		<script type="text/javascript" src="/js/jui/jquery.ui.mouse.js"></script>
+		<script type="text/javascript" src="/js/jui/jquery.ui.sortable.js"></script>
+		<script type="text/javascript" src="/js/index.js"></script>
+		<title>IHM - I Hack Music..</title>
+	</head>
+	<body>
+		<div id="fb-root"></div>
+		<div id="login">
+			{% if users.get_current_user() %}
+			Welcome, <b>{{ users.get_current_user().nickname() }}</b> | <a href="javascript:void(0);" data="' {{users.create_logout_url('/') }}">Logout</a>
+			{% else %}
+			Please click <a href="{{ users.create_login_url('/') }}">here</a> to login.
+			{% endif %}
+		</div>
+		<div id="mainframe">
+			<div id="logo">
+				<img src="css/title.jpg">
+			</div>
+			{% if users.get_current_user() %}
+			<div id="player">
+				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
+				<div id="jp_container_1" class="jp-audio">
+					<div class="jp-type-playlist">
+						<div class="jp-gui jp-interface">
+							<ul class="jp-controls">
+								<li>
+									<a href="javascript:void(0);" class="jp-previous" tabindex="1">previous</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-play" tabindex="1">play</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-pause" tabindex="1">pause</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-next" tabindex="1">next</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-stop" tabindex="1">stop</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-mute" tabindex="1" title="mute">mute</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-unmute" tabindex="1" title="unmute">unmute</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-volume-max" tabindex="1" title="max volume">max volume</a>
+								</li>
+							</ul>
+							<div class="jp-progress">
+								<div class="jp-seek-bar">
+									<div class="jp-play-bar"></div>
+								</div>
+							</div>
+							<div class="jp-volume-bar">
+								<div class="jp-volume-bar-value"></div>
+							</div>
+							<div class="jp-time-holder">
+								<div class="jp-current-time"></div>
+								<div class="jp-duration"></div>
+							</div>
+							<ul class="jp-toggles">
+								<!-- <li><a href="javascript:void(0);" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+								<li><a href="javascript:void(0);" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li> -->
+								<li>
+									<a href="javascript:void(0);" class="jp-repeat" tabindex="1" title="repeat">repeat</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a>
+								</li>
+							</ul>
+						</div>
+						<div class="jp-title">
+							<ul>
+								<li>
+									Welcome
+								</li>
+							</ul>
+						</div>
+						<div class="jp-no-solution">
+							<span>Update Required</span>
+							To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="message"></div>
+			<div id="content">
+				<div id="albumlist">
+					Playlist:
+					<input type="text" id="listname" />
+					<div id="pl-action">
+						<a id="pl-add" href="javascript:void(0);">Add</a>
+						<a id="pl-del" href="javascript:void(0);">Delete</a>
+					</div>
+					<hr />
+					<div id="pl">
+						<ul id="pl-ul-list"></ul>
+					</div>
+				</div>
+				<div id="songlist">
+					<div id="pl-name"></div>
+					<hr />
+					<div id="playlist">
+						<ul id="ul-playlist"></ul>
+					</div>
+				</div>
+				<div id="searchgrp">
+					Search:
+					<input type="text" id="search" />
+					<a id="submit" href="javascript:void(0);">Search</a>
+					<hr />
+					<div id="searchlist"></div>
+				</div>
+			</div>
+			{% else %}
+			<div id="login-message">
+				<p>
+					The page will automatically redirect to login page,
+					<br />
+					if it doesn't work, please click <a href="{{ url }}">here</a> to login.
+				</p>
+				<script>
+					var url = $('#login-message a').attr('href');
+					setTimeout("window.location = url", 10000);
+				</script>
+			</div>
+			{% endif %}
+			<div id="footer">
+				<div style="margin: auto; width: 430px;">
+					<div class="fb-like" data-href="https://ihackmusic.appspot.com" data-send="false" data-layout="button_count" data-width="40" data-show-faces="true" style="float: left;"></div>
+					<div class="addthis_toolbox addthis_default_style ">
+						<a class="addthis_button_tweet"></a><a class="addthis_button_google_plusone" g:plusone:size="medium"></a><a class="addthis_counter addthis_pill_style"></a>
+					</div><script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdaebfa0845e60d"></script><!-- AddThis Button END -->
+				</div>
+				<hr />
+				Contact us： <a href="mailto:rockers7414@hotmail.com">RCK</a>、<a href="mailto:cclien0725@gmail.com">CCLien</a>
+				<br />
+				Recommend browser： Chrome、Firefox
+				<br />
+				Copyright© 2012 RCK CCLien KocaMio All Rights Reserved.
+				<br />
+				<img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
+			</div>
+		</div>
+
+		<script>
+			( function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id))
+						return;
+					js = d.createElement(s);
+					js.id = id;
+					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+		</script>
+	</body>
+</html>

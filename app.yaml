@@ -1,0 +1,53 @@
+application: ihackmusic
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+handlers:
+- url: /css
+  static_dir: css
+  
+- url: /js
+  static_dir: js
+  
+- url: /favicon\.ico
+  static_files: css/favicon.ico
+  upload: css/favicon\.ico
+  
+- url: /
+  script: agent.application
+  secure: always
+  # login: required
+  
+- url: /index\.html
+  script: agent.application
+  secure: always
+  # login: required
+
+- url: /search
+  script: agent.application
+  secure: always
+  login: required
+  
+- url: /playlist
+  script: agent.application
+  secure: always
+  login: required
+  
+- url: /songlist
+  script: agent.application
+  secure: always
+  login: required
+
+- url: /.*
+  script: notfound.application
+  secure: always
+
+libraries:
+- name: jinja2
+  version: latest
+  
+- name: django
+  version: latest
