@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from lib.BeautifulSoup import BeautifulSoup
+from thirdparty.BeautifulSoup import BeautifulSoup
 from django.utils import simplejson
 from google.appengine.api import urlfetch
 from google.appengine.ext import webapp
