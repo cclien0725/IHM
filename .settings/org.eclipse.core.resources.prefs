@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding/agent.py=utf-8
+encoding/datastore.py=utf-8
 encoding/notfound.py=utf-8
 encoding/search.py=utf-8
